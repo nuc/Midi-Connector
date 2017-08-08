@@ -1,0 +1,10 @@
+{
+  "presets": [
+    ["es2015", { modules: false }], "stage-0", "react"
+  ],
+  "plugins": [
+    ["resolver", { "resolveDirs": ["src"] }],
+		["react-hot-loader/babel"]
+  ],
+  "ignore": "node_modules"
+}

@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = {
   devtool: 'eval',
   entry: [
+    'react-hot-loader/patch',
     './src/index.js'
   ],
   output: {
