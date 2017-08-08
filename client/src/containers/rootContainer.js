@@ -11,6 +11,10 @@ class ReactComponent extends Component {
 
   }
 
+  componentDidMount(props) {
+    debugger
+  }
+
   render() {
     return (
       <div>Root container</div>

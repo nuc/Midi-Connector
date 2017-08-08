@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = {
   devtool: 'eval',
   entry: [
+    'babel-polyfill',
     'react-hot-loader/patch',
     './src/index.js'
   ],
@@ -18,6 +19,12 @@ const config = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: 'eslint-loader',
+        exclude: /node_modules/,
+        enforce: 'pre'
+      },
       {
         test: /\.styl$/,
         use: [
@@ -35,7 +42,7 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Image poster',
+      title: 'midi-connector',
       template: path.resolve(__dirname, 'src/index.ejs')
     })
   ]
