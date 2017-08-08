@@ -23,6 +23,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "next",
+    "react-immutable-proptypes": "^2.1.0",
     "react-redux": "^5.0.5",
     "redux": "^3.7.2",
     "redux-immutablejs": "^0.0.8",

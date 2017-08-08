@@ -1,25 +1,32 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-class ReactComponent extends Component {
+import { midiConnectActions } from 'actions'
 
-  static propTypes = {
-    prop: PropTypes.string.isRequired
-  }
+class MidiConnect extends Component {
 
-  state = {
-
-  }
-
-  componentDidMount(props) {
-    debugger
+  componentDidMount() {
+    const { fetchMidiConnections } = this.props
+    fetchMidiConnections()
   }
 
   render() {
+    const { midiConnect } = this.props
     return (
-      <div>Root container</div>
+      <div className="root-container">
+        <h1>midiConnections</h1>
+        <p>{midiConnect.get('fetchStatus')}</p>
+      </div>
     )
   }
 }
 
-export default ReactComponent
+const mapStateToProps = state => ({
+  midiConnect: state.get('midiConnect')
+})
+
+export default connect(mapStateToProps, {
+  fetchMidiConnections: midiConnectActions.fetchStart,
+})(MidiConnect)
+
