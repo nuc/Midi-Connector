@@ -11,7 +11,7 @@ app.use((req, res, next) => {
 
 app.get('/midi-devices', (req, res) => {
   aconnect.getMidiDevices().then(devices => {
-    return res.send(devices)
+    return res.send(JSON.parse(devices))
   })
 })
 

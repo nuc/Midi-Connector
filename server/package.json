@@ -1,6 +1,9 @@
 {
   "name": "midi-connector",
   "version": "1.0.0",
+  "scripts": {
+    "start-server": "nodemon server.js"
+  },
   "dependencies": {
     "es6-promisify": "^5.0.0",
     "express": "^4.15.4",
