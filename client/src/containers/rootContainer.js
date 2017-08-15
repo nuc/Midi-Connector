@@ -11,12 +11,26 @@ class MidiConnect extends Component {
     fetchMidiConnections()
   }
 
+  get devices() {
+    const { midiConnect } = this.props
+    const midiDevices = midiConnect.get('midiDevices')
+    if (midiDevices.size) {
+      return (
+        <ul>
+          {midiDevices.map(device => <li>{device.get('name')}</li>)}
+        </ul>
+      )
+    }
+  }
+
   render() {
     const { midiConnect } = this.props
     return (
       <div className="root-container">
         <h1>midiConnections</h1>
-        <p>{midiConnect.get('fetchStatus')}</p>
+        <p>{midiConnect.get('itemStatus')}</p>
+        <p>{this.devices}</p>
+        <button>SELECT SOURCE</button>
       </div>
     )
   }
