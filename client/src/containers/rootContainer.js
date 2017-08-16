@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import classname from 'classnames'
 
 import { midiConnectActions } from 'actions'
 
 class MidiConnect extends Component {
+
+  state = {
+    source: null,
+    target: null
+  }
 
   componentDidMount() {
     const { fetchMidiConnections } = this.props
@@ -37,16 +43,34 @@ class MidiConnect extends Component {
     createConnection(payload)
   }
 
+  devicePortLI = (device, port, type) => {
+    const { source, target } = this.state
+    const portId = `${device.get('clientId')}:${port.get('portId')}`
+    const isActive = portId === source && type === 'source' || portId === target && type === 'target'
+    return (
+      <li
+        className={classname('device-port', { active: isActive })}
+        onClick={this.select}
+        data-device-type={type}
+        data-device-port-id={portId}>
+        {port.get('portName')}
+      </li>
+    )
+  }
+
   devices(type) {
     const { midiConnect } = this.props
     const midiDevices = midiConnect.get('midiDevices')
     if (midiDevices.size) {
       return (
         <ul>
-          {midiDevices.map(device => <div>
-            <li>{device.get('name')}</li>
-            <ul>{device.get('ports').map(port => <li onClick={this.select} data-device-type={type} data-device-port-id={`${device.get('clientId')}:${port.get('portId')}`}>{port.get('portName')}</li>)}</ul>
-          </div>)}
+          {
+            midiDevices.filter(device => device.get('name') !== 'System').map(device =>
+              device.get('ports').map(
+                port => this.devicePortLI(device, port, type)
+              )
+            )
+          }
         </ul>
       )
     }
@@ -56,18 +80,24 @@ class MidiConnect extends Component {
     const { midiConnect } = this.props
     return (
       <div className="root-container">
-        <h1>midiConnections</h1>
-        <h2>{midiConnect.get('itemStatus')} - <span onClick={this.fetchAgain}>again</span></h2>
-        <div className="device-list source">
-          Select Source
-          <div>{this.devices('source')}</div>
+        <h1>Midi Router</h1>
+        <span className="refresh" onClick={this.fetchAgain}>↺</span>
+        <div className="container">
+          <h3>Source</h3>
+          <div className="device-list source">
+            <div>{this.devices('source')}</div>
+          </div>
         </div>
-        <div className="device-list target">
-          Select Target
-          <div>{this.devices('target')}</div>
+        <div className="container">
+          <h3>Target</h3>
+          <div className="device-list target">
+            <div>{this.devices('target')}</div>
+          </div>
         </div>
-        <button onClick={this.connect}>Connect</button>
-				<button onClick={this.disconnect}>Disconnect all</button>
+        <div className="buttons">
+          <button className="red" onClick={this.disconnect}>Disconnect all</button>
+          <button onClick={this.connect}>Connect</button>
+        </div>
       </div>
     )
   }
