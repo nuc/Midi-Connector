@@ -4213,6 +4213,10 @@ react-redux@^5.0.5:
     loose-envify "^1.1.0"
     prop-types "^15.5.10"
 
+react-simpler-select@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-simpler-select/-/react-simpler-select-3.0.0.tgz#893cdaaba3d1fe1208ca352b843d8350641d59ed"
+
 react@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"

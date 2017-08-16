@@ -25,6 +25,7 @@
     "react-hot-loader": "next",
     "react-immutable-proptypes": "^2.1.0",
     "react-redux": "^5.0.5",
+    "react-simpler-select": "^3.0.0",
     "redux": "^3.7.2",
     "redux-immutablejs": "^0.0.8",
     "redux-logger": "^3.0.6",

@@ -9,7 +9,10 @@ const initialState = fromJS({
     details: null
   },
   midiDevices: [],
-  connections: {}
+  connections: {
+    status: null,
+    connections: []
+  }
 })
 
 const midiConnectReducers = (state = initialState, action) => {
@@ -29,6 +32,19 @@ const midiConnectReducers = (state = initialState, action) => {
         itemStatus: { status: 'fetched' },
         midiDevices: action.data
       })
+
+    case midiConnectConsts.createConnectionStart:
+      return state.setIn(['connections', 'status'], 'creating')
+
+    case midiConnectConsts.createConnectionSuccess:
+      const { sourceId, targetId } = action
+      return state
+        .setIn(['connections', 'status'], 'connected')
+        .updateIn(['connections', 'connections'], arr => arr.push({ sourceId, targetId }))
+
+    case midiConnectConsts.createConnectionFailure:
+      return state
+        .setIn(['connections', 'status'], 'failed')
 
     default:
       return state

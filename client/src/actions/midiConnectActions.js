@@ -12,9 +12,29 @@ const midiConnectActions = {
     error,
     type: midiConnectConsts.fetchError
   }),
-  createConnection: connectionData => ({
-    connectionData,
-    type: midiConnectConsts.createConnection
+  createConnectionStart: ({ sourceId, targetId }) => ({
+    sourceId,
+    targetId,
+    type: midiConnectConsts.createConnectionStart
+  }),
+  createConnectionSuccess: ({ sourceId, targetId }) => ({
+    sourceId,
+    targetId,
+    type: midiConnectConsts.createConnectionSuccess
+  }),
+  createConnectionFailure: ({ error }) => ({
+    error,
+    type: midiConnectConsts.createConnectionFailure
+  }),
+  disconnectStart: () => ({
+    type: midiConnectConsts.disconnectStart
+  }),
+  disconnectSuccess: () => ({
+    type: midiConnectConsts.disconnectSuccess
+  }),
+  disconnectFailure: ({ error }) => ({
+    error,
+    type: midiConnectConsts.disconnectFailure
   })
 }
 
