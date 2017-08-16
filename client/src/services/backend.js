@@ -1,5 +1,4 @@
 import fetch from 'node-fetch'
-import FormData from 'form-data'
 
 // const API_URL = 'http://localhost:3000'
 const API_URL = 'http://raspberrypi.local:3000'
