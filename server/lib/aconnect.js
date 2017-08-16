@@ -23,6 +23,7 @@ const aconnect = {
                 }
               } else {
                 prev.ports = prev.ports || []
+                try {
                 const [, portId] = current.match(/\s(\d+)\s/)
                 const [, portName] = current.match(/'(.*?)'/)
                 const port = {
@@ -30,14 +31,18 @@ const aconnect = {
                   portId: parseInt(portId)
                 }
                 prev.ports.push(port)
+                } catch (error) {
+                  return prev
+                }
               }
               return prev
             }, {})
         )
       return clients
-    })
+    }).catch(error => { error: error.message })
   },
-  connectDevices: (source, target) => get('echo "connected"')
+  connectDevices: ({ sourceId, targetId }) => get(`aconnect ${sourceId} ${targetId}`).then(() => ({})),
+  disconnectAllDevices: () => get(`aconnect -x`).then(() => ({}))
 }
 
 module.exports = aconnect
