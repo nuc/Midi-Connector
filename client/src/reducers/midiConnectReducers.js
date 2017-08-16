@@ -27,7 +27,7 @@ const midiConnectReducers = (state = initialState, action) => {
     case midiConnectConsts.fetchSuccess:
       return state.merge({
         itemStatus: { status: 'fetched' },
-        data: action.data
+        midiDevices: action.data
       })
 
     default:

@@ -1,6 +1,7 @@
 import fetch from 'node-fetch'
 
-const API_URL = 'http://localhost:3000'
+// const API_URL = 'http://localhost:3000'
+const API_URL = 'http://raspberrypi.local:3000'
 
 const backend = {
   fetchMidiConnections: () =>
