@@ -80,7 +80,7 @@ class MidiConnect extends Component {
     const { midiConnect } = this.props
     return (
       <div className="root-container">
-        <h1>Midi Router</h1>
+        <h1><a href="/">Midi Router</a></h1>
         <span className="refresh" onClick={this.fetchAgain}>↺</span>
         <div className="container">
           <h3>Source</h3>
