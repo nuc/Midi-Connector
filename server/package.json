@@ -2,13 +2,19 @@
   "name": "midi-connector",
   "version": "1.0.0",
   "scripts": {
-    "start-server": "nodemon server.js"
+    "watch": "nodemon server.js",
+    "test": "jest"
   },
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "@koa/cors": "2",
     "es6-promisify": "^5.0.0",
-    "express": "^4.15.4",
+    "koa": "^2.4.1",
+    "koa-body": "^2.5.0",
+    "koa-router": "^7.3.0",
     "node-cmd": "^3.0.0",
     "nodemon": "^1.11.0"
+  },
+  "devDependencies": {
+    "jest": "^22.0.4"
   }
 }
