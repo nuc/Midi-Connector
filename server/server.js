@@ -90,8 +90,6 @@ app.use(async (ctx, next) => {
 //   }
 // ]
 
-
-
 router.get('/midi-devices', async (ctx, next) => {
   const devices = await aconnect.getMidiDevices()
   // const devices = expected
@@ -103,11 +101,13 @@ router.get('/midi-devices', async (ctx, next) => {
 router.post('/connect', koaBody(), async (ctx, next) => {
   const { sourceId, targetId } = ctx.request.body
   await aconnect.connectDevices({ sourceId, targetId })
+  ctx.response.status = 201
   next()
 })
 
 router.delete('/disconnect-all', async (ctx, next) => {
   await aconnect.disconnectAllDevices()
+  ctx.response.status = 204
   next()
 })
 

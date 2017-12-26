@@ -15,10 +15,13 @@ class DevicePort extends Component {
       devicePort, colors, source, target, type
     } = this.props
     let color
+    if (target === this.portId() && type === 'target') {
+      color = colors[target]
+    }
     if (devicePort.get('connectedFrom') && type === 'target') {
       color = colors[devicePort.get('connectedFrom')]
     }
-    if (devicePort.get('connectingTo') && type === 'source') {
+    if ((source === this.portId() || devicePort.get('connectingTo')) && type === 'source') {
       color = colors[this.portId()]
     }
     return (
