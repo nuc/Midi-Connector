@@ -1,4 +1,7 @@
-const aconnect = require('../../lib/aconnect')
+const {
+  parseDeviceListOutput,
+  noOutputIsGoodOuputHandler
+} = require('../../lib/formatting')
 
 const mock = `
 client 0: 'System' [type=kernel]
@@ -88,14 +91,14 @@ const expected = [
 
 describe('list devices', () => {
   test('it should work', () => {
-    expect(aconnect.formatDevices(mock)).toEqual(expected)
+    expect(parseDeviceListOutput(mock)).toEqual(expected)
   })
 })
 describe('connectDevices', () => {
   test('establish connection: failure', () => {
-    expect(() => aconnect.handleOutput('Connection is already subscribed')).toThrow()
+    expect(() => noOutputIsGoodOuputHandler('Connection is already subscribed')).toThrow()
   })
   test('establish connection: success', () => {
-    expect(aconnect.handleOutput('')).toEqual('success')
+    expect(noOutputIsGoodOuputHandler('')).toEqual('success')
   })
 })
