@@ -75,7 +75,7 @@ class MidiConnect extends Component {
           colors={colors}
         />
         <div className="buttons">
-          <button className="red" onClick={this.disconnect}>Disconnect all</button>
+          <button className="red" onClick={this.disconnect}>Disconnect</button>
           <button onClick={this.connect}>Connect</button>
         </div>
       </div>
