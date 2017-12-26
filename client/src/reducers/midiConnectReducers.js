@@ -19,7 +19,7 @@ const initialState = fromJS({
     statusCode: null,
     details: null
   },
-  midiDevices: [],
+  midiDevices: []
 })
 
 const populateColors = clients => clients
@@ -36,7 +36,6 @@ const populateColors = clients => clients
 
 const midiConnectReducers = (state = initialState, action) => {
   switch (action.type) {
-
     case midiConnectConsts.fetchStart:
       return state.setIn(['fetchStatus', 'status'], 'fetching')
 
@@ -58,7 +57,7 @@ const midiConnectReducers = (state = initialState, action) => {
     case midiConnectConsts.createConnectionFailure:
       return state.mergeIn(['createConnection'], {
         status: 'error',
-        statusCode: action.error
+        error: action.error
       })
 
     case midiConnectConsts.createConnectionSuccess:

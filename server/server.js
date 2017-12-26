@@ -13,7 +13,7 @@ app.use(cors({ origin: '*' }))
 app.use(async (ctx, next) => {
   try {
     await next()
-  } catch (error) {
+  } catch (err) {
     ctx.status = err.statusCode || err.status || 500
     ctx.body = {
       message: err.message

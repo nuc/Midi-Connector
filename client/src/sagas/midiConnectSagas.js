@@ -6,9 +6,9 @@ import { backend } from 'services'
 
 export function* fetchMidiConnections() {
   try {
-    const midiConnections = yield call(backend.fetchMidiConnections)
+    const response = yield call(backend.fetchMidiConnections)
     yield put(
-      midiConnectActions.fetchSuccess({ data: midiConnections })
+      midiConnectActions.fetchSuccess({ data: response.body })
     )
   } catch (error) {
     yield put(
@@ -20,18 +20,19 @@ export function* fetchMidiConnections() {
 export function* createConnection({ sourceId, targetId }) {
   try {
     yield call(backend.createConnection, { sourceId, targetId })
-    yield put(midiConnectActions.createConnectionSuccess, { sourceId, targetId })
+    yield put(midiConnectActions.createConnectionSuccess())
+    yield call(fetchMidiConnections)
   } catch (error) {
-    yield put(midiConnectActions.createConnectionFailure, error)
+    yield put(midiConnectActions.createConnectionFailure({ error: error.message }))
   }
 }
 
 export function* disconnect() {
   try {
     yield call(backend.disconnectAll)
-    yield put(midiConnectActions.disconnectSuccess)
+    yield put(midiConnectActions.disconnectSuccess())
   } catch (error) {
-    yield put(midiConnectActions.disconnectFailure, error)
+    yield put(midiConnectActions.disconnectFailure({ error: error.message }))
   }
 }
 

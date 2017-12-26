@@ -36,8 +36,25 @@ class MidiConnect extends Component {
   }
 
   render() {
-    const { devices, colors } = this.props
+    const { devices, colors, createConnectionStatus } = this.props
     const { source, target } = this.state
+
+    const creationStatus = createConnectionStatus.get('status')
+
+    if (creationStatus === 'creating') {
+      return (
+        <div className="root-container">
+          <h1>CREATING...</h1>
+        </div>
+      )
+    } else if (creationStatus === 'error') {
+      return (
+        <div className="root-container">
+          <h1>OOpppssss..</h1>
+          {createConnectionStatus.get('error')}
+        </div>
+      )
+    }
     return (
       <div className="root-container">
         <h1><a href="/">Midi Router</a></h1>
@@ -78,7 +95,9 @@ const mapStateToProps = state => {
     })
   })
 
-  return { devices, colors }
+  const createConnectionStatus = state.getIn(['midiConnect', 'createConnection'])
+
+  return { devices, colors, createConnectionStatus }
 }
 
 export default connect(mapStateToProps, {
