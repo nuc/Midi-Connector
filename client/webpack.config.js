@@ -19,12 +19,6 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: 'eslint-loader',
-        exclude: /node_modules/,
-        enforce: 'pre'
-      },
-      {
         test: /\.styl$/,
         use: [
           'style-loader',
