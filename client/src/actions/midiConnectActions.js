@@ -17,9 +17,7 @@ const midiConnectActions = {
     targetId,
     type: midiConnectConsts.createConnectionStart
   }),
-  createConnectionSuccess: ({ sourceId, targetId }) => ({
-    sourceId,
-    targetId,
+  createConnectionSuccess: () => ({
     type: midiConnectConsts.createConnectionSuccess
   }),
   createConnectionFailure: ({ error }) => ({

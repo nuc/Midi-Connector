@@ -31,6 +31,7 @@ export function* disconnect() {
   try {
     yield call(backend.disconnectAll)
     yield put(midiConnectActions.disconnectSuccess())
+    yield call(fetchMidiConnections)
   } catch (error) {
     yield put(midiConnectActions.disconnectFailure({ error: error.message }))
   }

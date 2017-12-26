@@ -44,13 +44,13 @@ class MidiConnect extends Component {
     if (creationStatus === 'creating') {
       return (
         <div className="root-container">
-          <h1>CREATING...</h1>
+          <h1><a href="/">CREATING...</a></h1>
         </div>
       )
     } else if (creationStatus === 'error') {
       return (
         <div className="root-container">
-          <h1>OOpppssss..</h1>
+          <h1><a href="/">OOpppssss..</a></h1>
           {createConnectionStatus.get('error')}
         </div>
       )
