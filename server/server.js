@@ -90,6 +90,12 @@ app.use(async (ctx, next) => {
 //   }
 // ]
 
+router.get('/', async (ctx, next) => {
+  ctx.response.status = 200
+  ctx.body = 'Hi there!'
+  next()
+})
+
 router.get('/midi-devices', async (ctx, next) => {
   const devices = await aconnect.getMidiDevices()
   // const devices = expected
