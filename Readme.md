@@ -1,3 +1,8 @@
+# midi-connector.js
+
+![image](https://user-images.githubusercontent.com/697014/37869268-d7053b60-2fb4-11e8-86d9-792af696a91f.png)
+
+
 Add `~/.config/lxsession/LXDE-pi/autostart`:
 ```
 @lxpanel --profile LXDE-pi
