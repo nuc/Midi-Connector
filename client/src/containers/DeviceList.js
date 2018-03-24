@@ -27,7 +27,7 @@ class DeviceList extends Component {
   render() {
     return (
       <div className="container">
-        <h3>Source</h3>
+        <h3>{this.props.type}</h3>
         <div className="device-list source">
           <div><ul>{this.renderDevices()}</ul></div>
         </div>
