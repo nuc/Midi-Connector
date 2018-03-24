@@ -4,11 +4,11 @@
 
 Using your Raspberry Pi as a MIDI USB Host [is really straightforward](https://stimresp.wordpress.com/2016/02/08/using-a-raspberry-pi-as-usb-midi-host/). But for configuring it you need either keyboard & monitor connected to the Pi, or SSH access.
 
-This web app provides a GUI which can be used with a screen like the [Hyperpixel](https://shop.pimoroni.com/products/hyperpixel) and make your MIDI USB Host fully portable.
+This web app provides a GUI which can be used with a screen like the [Hyperpixel](https://shop.pimoroni.com/products/hyperpixel) and have your MIDI USB Host fully portable.
 
-It has a small Node.js server which acts as a wrapper of `aconnect` and a React app for the UI.
+It's a small Node.js server which acts as a wrapper of `aconnect` and a React app for the UI.
 
-It is quite barebones, but it works! :)
+Quite barebones, but it works! :)
 
 ## Installation (on the Pi)
 
@@ -20,11 +20,13 @@ First install `yarn` by `sudo apt-get install yarn`.
 
 For running the server on boot:
 - `sudo npm install -g forever`
-- `sudo crontab -e` and then add:
+- `sudo crontab -e` and add the following line at the end of the file:
 ```
 @reboot /usr/bin/forever start -c /usr/bin/node /home/pi/Code/midi-connector.js/server/server.js
 ```
 Replace `/home/pi/Code/midi-connector.js/` with the path of the repo.
+
+Restart the Pi. The server should be accessible under http://raspberrypi.local:3000.
 
 ### Client
 
@@ -34,7 +36,12 @@ You would need to build the client's assets and serve them on the Pi. I'm using 
 - `yarn install`
 - `yarn build`
 
-Serve static assets via nginx:
+Install nginx with:
+- `sudo apt-get install nginx`
+
+Edit the config:
+
+- `sudo vi /etc/nginx/sites-enabled/default` and update the contents with:
 
 ```
 server {
@@ -54,7 +61,11 @@ server {
 }
 ```
 
-Again, replace `/home/pi/Code/midi-connector.js/` with the right path.
+- Again, replace `/home/pi/Code/midi-connector.js/` with the right path.
+- Launch nginx: `sudo service start nginx`.
+- Open: http://raspberrypi.local/
+
+In case bonjour doesn't work for you, replace `raspberrypi.local` with the IP address of your Pi.
 
 ### For launching the webapp on boot
 
