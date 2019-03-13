@@ -31,7 +31,7 @@ Replace `/home/pi/Code/midi-connector.js/` with the path of the repo.
 
 Restart the Pi. The app should be accessible right away under http://raspberrypi.local:3000/app.
 
-#### Opening the web app on boot (kiosk mode)
+### Opening the web app on boot (kiosk mode)
 
 Edit: `~/.config/lxsession/LXDE-pi/autostart` and add:
 ```
