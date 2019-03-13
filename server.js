@@ -2,12 +2,17 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const cors = require('@koa/cors')
 const koaBody = require('koa-body')
+const serve = require('koa-static')
+const mount = require('koa-mount')
 
 const aconnect = require('./lib/aconnect.js')
 
 const app = new Koa()
 const router = new Router()
 
+const assets = new Koa()
+assets.use(serve(`${__dirname}/client/dist`))
+app.use(mount('/app', assets))
 app.use(cors({ origin: '*' }))
 
 app.use(async (ctx, next) => {
@@ -20,75 +25,6 @@ app.use(async (ctx, next) => {
     }
   }
 })
-
-// const expected = [
-//   {
-//     clientId: 0,
-//     name: 'System',
-//     ports: [
-//       {
-//         portId: 0,
-//         portName: 'Timer',
-//         connectingTo: null,
-//         connectedFrom: null
-//       },
-//       {
-//         portId: 1,
-//         portName: 'Announce',
-//         connectingTo: null,
-//         connectedFrom: null
-//       }
-//     ]
-//   },
-//   {
-//     clientId: 14,
-//     name: 'Midi Through',
-//     ports: [
-//       {
-//         portId: 0,
-//         portName: 'Midi Through Port-0',
-//         connectingTo: null,
-//         connectedFrom: null
-//       }
-//     ]
-//   },
-//   {
-//     clientId: 20,
-//     name: 'QuNexus',
-//     ports: [
-//       {
-//         portId: 0,
-//         portName: 'QuNexus MIDI 1',
-//         connectingTo: '28:0',
-//         connectedFrom: null
-//       },
-//       {
-//         portId: 1,
-//         portName: 'QuNexus MIDI 2',
-//         connectingTo: null,
-//         connectedFrom: null
-//       },
-//       {
-//         portId: 2,
-//         portName: 'QuNexus MIDI 3',
-//         connectingTo: null,
-//         connectedFrom: null
-//       }
-//     ]
-//   },
-//   {
-//     clientId: 28,
-//     name: 'USB MIDI Interface',
-//     ports: [
-//       {
-//         portId: 0,
-//         portName: 'USB MIDI Interface MIDI 1',
-//         connectingTo: null,
-//         connectedFrom: '20:0'
-//       }
-//     ]
-//   }
-// ]
 
 router.get('/', async (ctx, next) => {
   ctx.response.status = 200
