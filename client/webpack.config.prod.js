@@ -9,6 +9,7 @@ const config = {
     './src/index.js'
   ],
   output: {
+    publicPath: '/app',
     path: path.resolve(__dirname, 'dist'),
     filename: 'app-bundle.js',
     devtoolModuleFilenameTemplate: '/[absolute-resource-path]'
@@ -36,8 +37,8 @@ const config = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"',
-      },
+        NODE_ENV: '"production"'
+      }
     }),
     new HtmlWebpackPlugin({
       title: 'midi-connector',
@@ -47,5 +48,4 @@ const config = {
 }
 
 module.exports = config
-
 
