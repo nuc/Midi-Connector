@@ -44,20 +44,20 @@ class MidiConnect extends Component {
     if (creationStatus === 'creating') {
       return (
         <div className="root-container">
-          <h1><a href="/">CREATING...</a></h1>
+          <h1><a href="/app">CREATING...</a></h1>
         </div>
       )
     } else if (creationStatus === 'error') {
       return (
         <div className="root-container">
-          <h1><a href="/">OOpppssss..</a></h1>
+          <h1><a href="/app">OOpppssss..</a></h1>
           {createConnectionStatus.get('error')}
         </div>
       )
     }
     return (
       <div className="root-container">
-        <h1><a href="/">Midi Connector</a></h1>
+        <h1><a href="/app">Midi Connector</a></h1>
         <DeviceList
           type="source"
           devices={devices}
