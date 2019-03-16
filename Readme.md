@@ -39,5 +39,5 @@ Edit: `~/.config/lxsession/LXDE-pi/autostart` and add:
 @pcmanfm --desktop --profile LXDE-pi
 @xscreensaver -no-splash
 @point-rpi
-@/usr/bin/chromium-browser --kiosk --disable-restore-session-state http://raspberrypi.local:3000/app
+@/usr/bin/chromium-browser --kiosk --disable-restore-session-state http://localhost:3000/app
 ```
