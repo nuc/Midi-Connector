@@ -11,12 +11,8 @@ This web app provides a GUI which can be used with a screen like the [Hyperpixel
 It includes a server part which acts as a wrapper of `aconnect` and a web app for the UI.
 
 ## Installation (on the Pi)
-
-First install `yarn` by `sudo apt-get install yarn`.
-
-### Install dependencies and launch the app
-- `yarn install`
-- `yarn start`
+- `npm install`
+- `npm start`
 - Open: http://raspberrypi.local:3000/app
 
 ### Starting the server on boot
@@ -29,7 +25,7 @@ For starting the app on boot:
 ```
 Replace `/home/pi/Code/midi-connector.js/` with the path of the repo.
 
-Restart the Pi. The app should be accessible right away under http://raspberrypi.local:3000/app.
+Restart the Pi. The app should be accessible right away under http://raspberrypi.local:3000/app or under your device's IP address.
 
 ### Opening the web app on boot (kiosk mode)
 
