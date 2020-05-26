@@ -57,7 +57,7 @@ class MidiConnect extends Component {
     }
     return (
       <div className="root-container">
-        <h1><a href="/app">Midi Connector</a></h1>
+        <h1><a href="/app">MIDI Connector</a></h1>
         <DeviceList
           type="source"
           devices={devices}
